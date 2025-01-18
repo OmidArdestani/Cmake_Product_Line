@@ -1,12 +1,21 @@
-#ifndef UNIQUEASSET3_H
-#define UNIQUEASSET3_H
+#pragma once
 
 #include "UniqueAsset3_global.h"
 
-class UNIQUEASSET3_EXPORT UniqueAsset3
+#include <sharedassets.h>
+
+class UNIQUEASSET3_EXPORT UniqueAsset3 : public IPLAsset
 {
 public:
     UniqueAsset3();
+
+    // API Functions
+private:
+    QJsonObject runFeature(QJsonObject params);
+
+    // IPLAsset interface
+public:
+    void enableAsset(bool value) override;
+    APIFunctionMap getAPIFunctionMap() override;
 };
 
-#endif // UNIQUEASSET3_H
