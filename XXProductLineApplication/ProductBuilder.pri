@@ -1,5 +1,4 @@
 
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SharedAssets/release/ -lSharedAssets
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SharedAssets/debug/ -lSharedAssets
 else:unix: LIBS += -L$$OUT_PWD/../SharedAssets/ -lSharedAssets
@@ -24,6 +23,8 @@ else:unix: LIBS += -L$$OUT_PWD/../UniqueAsset1/ -lUniqueAsset1
 INCLUDEPATH += $$PWD/../UniqueAsset1
 DEPENDPATH += $$PWD/../UniqueAsset1
 
+DEFINES += UAsset1
+
 }
 
 contains(CONFIG, UAsset2) {
@@ -34,6 +35,8 @@ else:unix: LIBS += -L$$OUT_PWD/../UniqueAsset2/ -lUniqueAsset2
 
 INCLUDEPATH += $$PWD/../UniqueAsset2
 DEPENDPATH += $$PWD/../UniqueAsset2
+
+DEFINES += UAsset2
 
 }
 
@@ -46,6 +49,8 @@ else:unix: LIBS += -L$$OUT_PWD/../UniqueAsset3/ -lUniqueAsset3
 INCLUDEPATH += $$PWD/../UniqueAsset3
 DEPENDPATH += $$PWD/../UniqueAsset3
 
+DEFINES += UAsset3
+
 }
 
 contains(CONFIG, UAsset4) {
@@ -57,4 +62,5 @@ else:unix: LIBS += -L$$OUT_PWD/../UniqueAsset4/ -lUniqueAsset4
 INCLUDEPATH += $$PWD/../UniqueAsset4
 DEPENDPATH += $$PWD/../UniqueAsset4
 
+DEFINES += UAsset4
 }

@@ -28,6 +28,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+
 CURRENT_PRODUCT = Product_1
 
 include(ProductConfig.pri)

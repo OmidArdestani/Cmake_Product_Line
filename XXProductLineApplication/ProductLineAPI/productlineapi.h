@@ -13,10 +13,12 @@ class ProductLineAPI : public QObject
 public:
     explicit ProductLineAPI(MainWindow* parent);
 
-    QJsonObject callFunction(QString functionName, QJsonObject params);
+    QJsonObject callFunction(quint64 instanceId, QString functionName, QJsonObject params);
 
     void start();
     void stop();
+
+    void insertInstance(const quint64& key, IPLAsset* instance);
 
 private:
     QJsonObject getInstance(QJsonObject);

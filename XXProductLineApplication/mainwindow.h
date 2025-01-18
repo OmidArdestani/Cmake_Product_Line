@@ -11,7 +11,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public IPLAsset
 {
     Q_OBJECT
 
@@ -25,14 +25,21 @@ private slots:
     void on_actionRun_API_triggered();
 
 private:
-    void buildPtoduct();
+    void buildProduct();
     void buildMenu();
+
+    // API Functions
+private:
+    QJsonObject getFeature1(QJsonObject);
 
 private:
     Ui::MainWindow *ui;
-
     ProductLineAPI productLineAPI;
+    QMap<QString, IPLAsset*> productAssetMap{};
 
-    QMap<QString, IPLAsset *> productAssetMap{};
+    // IPLAsset interface
+public:
+    void enableAsset(bool value) override{}
+    APIFunctionMap getAPIFunctionMap() override;
 };
 #endif // MAINWINDOW_H

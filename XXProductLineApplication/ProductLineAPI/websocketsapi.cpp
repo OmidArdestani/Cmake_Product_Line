@@ -83,17 +83,18 @@ void WebSocketsAPI::processRequest(QWebSocket *client, const QString &request)
     }
 
     QJsonObject jsonObj = jsonDoc.object();
-    QString method = jsonObj.value("method").toString();
+    QString instanceId = jsonObj.value("instanceId").toString();
+    QString method     = jsonObj.value("method").toString();
     QJsonObject params = jsonObj.value("params").toObject();
 
-    if (method.isEmpty())
+    if (method.isEmpty() || instanceId.isEmpty())
     {
         sendResponse(client, QJsonObject{{"result", QJsonValue()}, {"error", "Method name is missing"}});
         return;
     }
 
     // Handle different methods
-    QJsonObject result = productLineAPI->callFunction(method, params);
+    QJsonObject result = productLineAPI->callFunction(instanceId.toULongLong(), method, params);
     sendResponse(client, result);
 }
 
