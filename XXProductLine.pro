@@ -8,4 +8,5 @@ SUBDIRS += \
     UniqueAsset2 \
     UniqueAsset3 \
     UniqueAsset4 \
-    XXProductLineApplication
+    XXProductLineApplication \
+    XXProductLineTests

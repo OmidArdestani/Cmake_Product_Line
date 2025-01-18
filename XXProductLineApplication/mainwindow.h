@@ -40,6 +40,7 @@ private:
     // IPLAsset interface
 public:
     void enableAsset(bool value) override{}
+    bool isEnable() const {return true;}
     APIFunctionMap getAPIFunctionMap() override;
 
 private slots:

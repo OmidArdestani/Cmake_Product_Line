@@ -12,6 +12,7 @@ using APIFunctionMap = QMap<QString, std::function<QJsonObject (QJsonObject)>>;
 class IPLAsset{
 public:
     virtual void enableAsset(bool value) = 0;
+    virtual bool isEnable() const = 0;
 
     virtual APIFunctionMap getAPIFunctionMap() = 0;
 };

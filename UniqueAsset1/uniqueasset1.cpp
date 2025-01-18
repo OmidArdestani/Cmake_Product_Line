@@ -11,9 +11,9 @@ QJsonObject UniqueAsset1::runFeature(QJsonObject params)
     };
 }
 
-
-void UniqueAsset1::enableAsset(bool value)
+void UniqueAsset1::exceptionFunction()
 {
+    throw std::runtime_error("Error");
 }
 
 APIFunctionMap UniqueAsset1::getAPIFunctionMap()

@@ -7,10 +7,11 @@ QJsonObject UniqueAsset3::runFeature(QJsonObject params)
 
 }
 
-
-void UniqueAsset3::enableAsset(bool value)
+void UniqueAsset3::exceptionFunction()
 {
+    throw std::runtime_error("Error");
 }
+
 
 APIFunctionMap UniqueAsset3::getAPIFunctionMap()
 {
