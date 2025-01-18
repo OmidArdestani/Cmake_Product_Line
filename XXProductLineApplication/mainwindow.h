@@ -41,5 +41,12 @@ private:
 public:
     void enableAsset(bool value) override{}
     APIFunctionMap getAPIFunctionMap() override;
+
+private slots:
+    void onProduct1MenuActionTriggered();
+    void onProduct2MenuActionTriggered();
+    void onProduct3MenuActionTriggered();
+    void onProduct4MenuActionTriggered();
+    void onProduct5MenuActionTriggered();
 };
 #endif // MAINWINDOW_H
