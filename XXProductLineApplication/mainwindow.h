@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <sharedassets.h>
+#include <ProductBuilder/IProductBuilder.h>
 #include "ProductLineAPI/productlineapi.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,7 +27,6 @@ private slots:
 
 private:
     void buildProduct();
-    void buildMenu();
 
     // API Functions
 private:
@@ -34,7 +34,8 @@ private:
 
 private:
     Ui::MainWindow *ui;
-    ProductLineAPI productLineAPI;
+    IProductBuilder* productBuilder{ nullptr };
+    ProductLineAPI   productLineAPI;
     QMap<QString, IPLAsset*> productAssetMap{};
 
     // IPLAsset interface
@@ -42,12 +43,5 @@ public:
     void enableAsset(bool value) override{}
     bool isEnable() const {return true;}
     APIFunctionMap getAPIFunctionMap() override;
-
-private slots:
-    void onProduct1MenuActionTriggered();
-    void onProduct2MenuActionTriggered();
-    void onProduct3MenuActionTriggered();
-    void onProduct4MenuActionTriggered();
-    void onProduct5MenuActionTriggered();
 };
 #endif // MAINWINDOW_H

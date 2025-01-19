@@ -1,4 +1,35 @@
 
+
+HEADERS += ProductBuilder/IProductBuilder.h
+
+contains(DEFINES, Product_1) {
+    HEADERS += ProductBuilder/Product1Builder.h
+    SOURCES += ProductBuilder/Product1Builder.cpp
+}
+
+contains(DEFINES, Product_2) {
+    HEADERS += ProductBuilder/Product2Builder.h
+    SOURCES += ProductBuilder/Product2Builder.cpp
+}
+
+contains(DEFINES, Product_3) {
+    HEADERS += ProductBuilder/Product3Builder.h
+    SOURCES += ProductBuilder/Product3Builder.cpp
+}
+
+contains(DEFINES, Product_4) {
+    HEADERS += ProductBuilder/Product4Builder.h
+    SOURCES += ProductBuilder/Product4Builder.cpp
+}
+
+contains(DEFINES, Product_5) {
+    HEADERS += ProductBuilder/Product5Builder.h
+    SOURCES += ProductBuilder/Product5Builder.cpp
+}
+
+
+#---------------------------------------------
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SharedAssets/release/ -lSharedAssets
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SharedAssets/debug/ -lSharedAssets
 else:unix: LIBS += -L$$OUT_PWD/../SharedAssets/ -lSharedAssets
