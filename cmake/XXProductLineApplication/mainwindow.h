@@ -41,7 +41,7 @@ private:
     // IPLAsset interface
 public:
     void enableAsset(bool value) override{}
-    bool isEnable() const {return true;}
+    bool isEnable() const override {return true;}
     APIFunctionMap getAPIFunctionMap() override;
 };
 #endif // MAINWINDOW_H

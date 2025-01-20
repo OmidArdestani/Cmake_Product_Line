@@ -19,7 +19,7 @@ public:
     // IPLAsset interface
 public:
     void enableAsset(bool value) override{ enable = value;}
-    bool isEnable() const{return enable;}
+    bool isEnable() const override{return enable;}
     APIFunctionMap getAPIFunctionMap() override;
 
 private:

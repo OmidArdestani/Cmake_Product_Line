@@ -3,8 +3,6 @@
 
 #include "IProductBuilder.h"
 
-#include <uniqueasset1.h>
-#include <uniqueasset2.h>
 
 class Product1Builder : public IProductBuilder{
     Q_OBJECT
@@ -22,6 +20,4 @@ private slots:
     void onProduct1MenuActionTriggered();
 
 private:
-    UniqueAsset1* asset1{nullptr};
-    UniqueAsset2* asset2{nullptr};
 };
