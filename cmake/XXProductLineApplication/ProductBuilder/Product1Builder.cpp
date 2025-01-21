@@ -10,6 +10,8 @@ bool Product1Builder::buildMenu(QMenuBar *menuBar)
     QMenu *product1Menu = menuBar->addMenu("Product 1");
     product1Menu->addAction("Action 1 for Product 1", this, SLOT(onProduct1MenuActionTriggered()));
     product1Menu->addAction("Action 2 for Product 1", this, SLOT(onProduct1MenuActionTriggered()));
+
+    return true;
 }
 
 bool Product1Builder::registerFeatures(QMap<QString, IPLAsset *> &refMap)

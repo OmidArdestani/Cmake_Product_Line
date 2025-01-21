@@ -40,6 +40,7 @@ else()
 endif()
 
 list(APPEND ASSETS_HEADER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../SharedAssets)
+list(APPEND Dependencies SharedAssets)
 
 # Include SharedAssets and UniqueAsset libraries based on configuration
 foreach(ASSET IN LISTS CONFIG)
@@ -56,6 +57,7 @@ foreach(ASSET IN LISTS CONFIG)
 
         list(APPEND DEFINES -DUAsset1)
         list(APPEND ASSETS_HEADER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../UniqueAsset1)
+        list(APPEND Dependencies UniqueAsset1)
     elseif(${ASSET} MATCHES "UAsset2")
         if(MSVC)
             if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -69,6 +71,7 @@ foreach(ASSET IN LISTS CONFIG)
 
         list(APPEND DEFINES -DUAsset2)
         list(APPEND ASSETS_HEADER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../UniqueAsset2)
+        list(APPEND Dependencies UniqueAsset2)
     elseif(${ASSET} MATCHES "UAsset3")
         if(MSVC)
             if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -82,6 +85,7 @@ foreach(ASSET IN LISTS CONFIG)
 
         list(APPEND DEFINES -DUAsset3)
         list(APPEND ASSETS_HEADER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../UniqueAsset3)
+        list(APPEND Dependencies UniqueAsset3)
     elseif(${ASSET} MATCHES "UAsset4")
         if(MSVC)
             if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -95,6 +99,7 @@ foreach(ASSET IN LISTS CONFIG)
 
         list(APPEND DEFINES -DUAsset4)
         list(APPEND ASSETS_HEADER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../UniqueAsset4)
+        list(APPEND Dependencies UniqueAsset4)
     endif()
 endforeach()
 

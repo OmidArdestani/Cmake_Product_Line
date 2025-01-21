@@ -5,7 +5,6 @@
 #pragma once
 
 class IProductBuilder : public QObject{
-    Q_OBJECT
 
 public:
     IProductBuilder():QObject(nullptr){}

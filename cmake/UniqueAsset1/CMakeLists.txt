@@ -29,3 +29,4 @@ add_dependencies(UniqueAsset1 SharedAssets)
 
 # Add the define for the library
 target_compile_definitions(UniqueAsset1 PRIVATE UNIQUEASSET1_LIBRARY)
+

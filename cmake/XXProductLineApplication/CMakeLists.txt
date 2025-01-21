@@ -27,6 +27,7 @@ include(ProductBuilder.cmake)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
+        mainwindow.ui
         ${PRODUCT_LINE_API_SOURCES}
         ${PRODUCT_LINE_API_HEADERS}
         ${PRODUCT_BUILDER_HEADERS}
@@ -59,8 +60,11 @@ endif()
 # Apply the DEFINES to the target after it is defined
 target_compile_definitions(XXProductLineApplication PRIVATE ${DEFINES})
 
+# Apply dependencies
+add_dependencies(XXProductLineApplication ${Dependencies})
+
 # Link the required Qt6/5 libraries
-target_link_libraries(XXProductLineApplication PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::WebSockets Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(XXProductLineApplication PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::WebSockets Qt${QT_VERSION_MAJOR}::Network ${LIBS})
 
 # Include directories for headers
 target_include_directories(XXProductLineApplication PRIVATE
@@ -69,10 +73,7 @@ target_include_directories(XXProductLineApplication PRIVATE
     ${ASSETS_HEADER_DIR}
 )
 
-
-# Optional installation rules
-install(TARGETS XXProductLineApplication DESTINATION bin)
-
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(XXProductLineApplication)
 endif()
+
