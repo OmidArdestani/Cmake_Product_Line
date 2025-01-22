@@ -31,5 +31,5 @@ void Test_UniqueAsset1::testFunctionality() {
 void Test_UniqueAsset1::testEdgeCases() {
     // Example: Test edge cases and exception handling
     UniqueAsset1 asset;
-    QVERIFY_EXCEPTION_THROWN(asset.exceptionFunction(), std::runtime_error);
+    QVERIFY_THROWS_EXCEPTION(std::runtime_error, asset.exceptionFunction());
 }

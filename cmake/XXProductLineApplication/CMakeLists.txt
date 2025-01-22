@@ -1,5 +1,5 @@
+# Define the project and specify C++ standard
 cmake_minimum_required(VERSION 3.16)
-
 project(XXProductLineApplication VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
@@ -9,10 +9,8 @@ set(CMAKE_AUTORCC ON)
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_BINARY_DIR "${CMAKE_SOURCE_DIR}/build")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-# Find Qt6/5 libraries
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets WebSockets Network)
 
 # Set the current product
@@ -27,6 +25,7 @@ include(ProductBuilder.cmake)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
+        mainwindow.h
         mainwindow.ui
         ${PRODUCT_LINE_API_SOURCES}
         ${PRODUCT_LINE_API_HEADERS}
@@ -64,7 +63,14 @@ target_compile_definitions(XXProductLineApplication PRIVATE ${DEFINES})
 add_dependencies(XXProductLineApplication ${Dependencies})
 
 # Link the required Qt6/5 libraries
-target_link_libraries(XXProductLineApplication PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::WebSockets Qt${QT_VERSION_MAJOR}::Network ${LIBS})
+target_link_libraries(XXProductLineApplication PRIVATE
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::WebSockets
+    Qt${QT_VERSION_MAJOR}::Network
+    ${LIBS}
+)
 
 # Include directories for headers
 target_include_directories(XXProductLineApplication PRIVATE
