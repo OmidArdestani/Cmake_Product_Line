@@ -7,11 +7,11 @@ ProductLineAPI::ProductLineAPI(MainWindow* parent)
     , productLineMainWindow(parent)
     , webSocketsAPI(new WebSocketsAPI(this))
 {
-
-    // the main product line is defining as root
+    // The main product line is defined as root
     insertInstance(0, productLineMainWindow);
 }
 
+// Calls a function on a specific instance
 QJsonObject ProductLineAPI::callFunction(quint64 instanceId, QString functionName, QJsonObject params)
 {
     if(!instanceMap.contains(instanceId))
@@ -37,24 +37,27 @@ QJsonObject ProductLineAPI::callFunction(quint64 instanceId, QString functionNam
     return (instanceFunctionMap.value(functionName))(params);
 }
 
+// Starts the WebSocket server
 void ProductLineAPI::start()
 {
     webSocketsAPI->startServer(1025);
 }
 
+// Stops the WebSocket server
 void ProductLineAPI::stop()
 {
     webSocketsAPI->stopServer();
 }
 
+// Inserts an instance into the instance map
 void ProductLineAPI::insertInstance(const quint64 &key, IPLAsset *instance)
 {
     instanceMap.insert(key, instance);
 }
 
+// Gets the main instance
 QJsonObject ProductLineAPI::getInstance(QJsonObject)
 {
-
     QJsonObject result{
         { "instanceId", QString::number(reinterpret_cast<quintptr>(productLineMainWindow)) },
         { "error", "" }

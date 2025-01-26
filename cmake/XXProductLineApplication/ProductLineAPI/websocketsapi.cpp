@@ -15,6 +15,7 @@ WebSocketsAPI::~WebSocketsAPI()
     stopServer();
 }
 
+// Starts the WebSocket server on the specified port
 bool WebSocketsAPI::startServer(quint16 port)
 {
     if (server->listen(QHostAddress::Any, port))
@@ -31,6 +32,7 @@ bool WebSocketsAPI::startServer(quint16 port)
     }
 }
 
+// Stops the WebSocket server and closes all client connections
 void WebSocketsAPI::stopServer()
 {
     foreach (QWebSocket *client, clients)
@@ -42,6 +44,7 @@ void WebSocketsAPI::stopServer()
     qDebug() << "WebSocket server stopped.";
 }
 
+// Handles new client connections
 void WebSocketsAPI::onNewConnection()
 {
     QWebSocket *client = server->nextPendingConnection();
@@ -53,6 +56,7 @@ void WebSocketsAPI::onNewConnection()
     qDebug() << "New client connected:" << client->peerAddress().toString();
 }
 
+// Handles incoming text messages from clients
 void WebSocketsAPI::onTextMessageReceived(const QString &message)
 {
     QWebSocket *client = qobject_cast<QWebSocket *>(sender());
@@ -62,6 +66,7 @@ void WebSocketsAPI::onTextMessageReceived(const QString &message)
     }
 }
 
+// Handles client disconnections
 void WebSocketsAPI::onClientDisconnected()
 {
     QWebSocket *client = qobject_cast<QWebSocket *>(sender());
@@ -73,6 +78,7 @@ void WebSocketsAPI::onClientDisconnected()
     }
 }
 
+// Processes incoming requests from clients
 void WebSocketsAPI::processRequest(QWebSocket *client, const QString &request)
 {
     QJsonDocument jsonDoc = QJsonDocument::fromJson(request.toUtf8());
@@ -98,6 +104,7 @@ void WebSocketsAPI::processRequest(QWebSocket *client, const QString &request)
     sendResponse(client, result);
 }
 
+// Sends a response to the client
 void WebSocketsAPI::sendResponse(QWebSocket *client, const QJsonObject &response)
 {
     QJsonDocument responseDoc(response);

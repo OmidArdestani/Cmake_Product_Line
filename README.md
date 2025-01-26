@@ -54,6 +54,49 @@ XXProductLine/
 
 The project includes modular APIs to facilitate the addition and configuration of product-specific features. These APIs leverage **QWebSocket** for real-time communication, utilizing **JSON** as the data exchange format. This design ensures seamless integration of new product builders and assets into the main application while maintaining flexibility and extensibility.
 
+## API Example
+
+```bash
+#include <QCoreApplication>
+#include <QJsonObject>
+#include <QDebug>
+#include "productlineapi.h"
+#include "mainwindow.h"
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
+    // Create the main window
+    MainWindow mainWindow;
+
+    // Create the ProductLineAPI instance
+    ProductLineAPI productLineAPI(&mainWindow);
+
+    // Start the WebSocket server
+    productLineAPI.start();
+
+    // Insert a new instance into the API
+    IPLAsset* newAsset = new SomeIPLAssetImplementation(); // Assume SomeIPLAssetImplementation is a concrete implementation of IPLAsset
+    productLineAPI.insertInstance(1, newAsset);
+
+    // Call a function on the new instance
+    QJsonObject params;
+    params["param1"] = "value1";
+    QJsonObject result = productLineAPI.callFunction(1, "someFunction", params);
+    qDebug() << "Function call result:" << result;
+
+    // Get the main instance
+    QJsonObject mainInstance = productLineAPI.getInstance(QJsonObject());
+    qDebug() << "Main instance:" << mainInstance;
+
+    // Stop the WebSocket server
+    productLineAPI.stop();
+
+    return a.exec();
+}
+```
+
 ### Key Features
 
 - **Real-Time Updates**: Instant synchronization between components and features.
